@@ -1,5 +1,5 @@
 <template>
-  <body style="background: linear-gradient(to right, #01070ea9, #015892), url('@/assets/images/Leonardo_Diffusion_XL_A_stunning_African_woman_with_a_light_co_2.jpg'); padding-bottom: 36px;">
+  <body style="background: linear-gradient(to right, #01070ea9, #015892d0); padding-bottom: 36px;">
     <div class="wrapper">
     <div class="container">
         <div class="container_content_top d-flex justify-content-between align-items-center">
@@ -10,7 +10,9 @@
                 <ul class="list-unstyled d-flex mb-0">
                     <li class="me-3 mt-2" style="cursor: pointer;" @mouseover="hoverItem" @mouseleave="unhoverItem">A propos de nous</li>
                     <li class="me-3 mt-2" style="cursor: pointer;" @mouseover="hoverItem" @mouseleave="unhoverItem">Contact</li>
-                    <button class="me-3 btn btn-danger rounded-pill" style="cursor: pointer;"><span>Commencer la visite</span></button>
+                    <a href="/secondary_page">
+                      <button class="me-3 btn btn-danger rounded-pill" style="cursor: pointer;"><span>Commencer la visite</span></button>
+                    </a>
                 </ul>
             </div>
         </div>
@@ -23,12 +25,16 @@
               <p>
                 Bienvenue dans l'univers du musée <span>Abdou TIDJANI-SERPOS</span>, un musée qui a beaucoup à offrir. Attachez solidement vos ceintures et laissez-vous simplement transporter à travers une visite épique.
               </p>
-              <button class="btn btn-danger rounded-pill">C'est Parti!</button>
+              <a href="/secondary_page">
+                <button class="btn btn-danger rounded-pill">C'est Parti!</button>
+              </a>
             </div>
           </div>
         </div>
     </div>
   </div>
+  <div id="loader" class="loader"></div>
+
   </body>
   
 </template>
@@ -48,9 +54,40 @@ const unhoverItem = (event: MouseEvent) => {
   target.style.color = ''; // Rétablit la couleur du texte par défaut
   target.style.borderBottom = ''; // Retire la bordure
 }
+
+// Récupérez l'élément du loader
+const loader: HTMLElement | null = document.getElementById('loader');
+
+// Récupérez les boutons
+const startVisitButton: HTMLButtonElement | null = document.querySelector('.container_content_top_right button');
+const continueVisitButton: HTMLButtonElement | null = document.querySelector('.content_text button');
+
+// Vérifiez si les éléments ont été trouvés avant d'ajouter des écouteurs d'événements
+if (loader && startVisitButton && continueVisitButton) {
+  // Ajoutez des écouteurs d'événements sur les boutons
+  startVisitButton.addEventListener('click', () => {
+    // Affichez le loader
+    if (loader) {
+      loader.style.display = 'block';
+    }
+  });
+
+  continueVisitButton.addEventListener('click', () => {
+    // Affichez le loader
+    if (loader) {
+      loader.style.display = 'block';
+    }
+  });
+}
+
 </script>
 
 <style scoped>
+
+body{
+  background-image: url("@/assets/images/Musees-du-Benin-le-guide-complet.jpg");
+}
+
 *{
   color: whitesmoke;
 }
@@ -86,7 +123,7 @@ button{
 
 .content_text p span{
  color: transparent;
-    -webkit-text-stroke: .7px white;
+    -webkit-text-stroke: .7px rgb(7, 196, 243);
     font-size: 30px;
     background-image: linear-gradient(#d3481eec,#f10c0c);
     background-repeat: no-repeat;
@@ -107,6 +144,28 @@ button{
     animation: homeCursorText 6s linear infinite;
     animation-delay: 3s;
 }
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -60px;
+  margin-left: -60px;
+  z-index: 9999;
+  display: none; /* Caché par défaut */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 
 @keyframes homeBgText{
     0%, 10%, 100% {
