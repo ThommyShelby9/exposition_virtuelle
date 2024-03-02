@@ -9,22 +9,22 @@
     <div class="content">
       <div class="content_middle">
         <div class="content_middle_left">
-          <img :src="Women" alt="" />
+          <video :src="currentVideo" class="video" ref="videoPlayer"></video>
         </div>
         <div class="content_middle_right">
           <div class="top-buttons">
-            <button class="btn btn-danger" @click="changeBackgroundAndPlayAudio(Audio1, Image1)">
+            <button class="btn btn-danger" @click="changeContent(Image1, Video2)">
               Mots d'ouverture
             </button>
-            <button class="btn btn-danger" @click="changeBackgroundAndPlayAudio(Audio2, Image2)">
+            <button class="btn btn-danger" @click="changeContent(Image2, Video4)">
               Mots de Bienvenue 
             </button>
-            <button class="btn btn-danger" @click="changeBackgroundAndPlayAudio(Audio3, Image3)">
+            <button class="btn btn-danger" @click="changeContent(Image3, Video1)">
               Mots de Bienvenue 2
             </button>
           </div>
           <div class="bottom-buttons">
-            <button class="btn btn-danger" @click="changeBackgroundAndPlayAudio(Audio4, Image4)">
+            <button class="btn btn-danger" @click="changeContent(Image4, Video3)">
               Mots de conclusion
             </button>
           </div>
@@ -36,10 +36,11 @@
 
 <script setup lang="ts">
 import Women from "@/assets/images/Leonardo_Diffusion_XL_A_stunning_African_woman_with_a_light_co_2-removebg-preview.png";
-import Audio1 from "@/assets/songs/AUD-20240227-WA0002.m4a"
-import Audio2 from "@/assets/songs/AUD-20240227-WA0004.m4a"
-import Audio3 from "@/assets/songs/AUD-20240227-WA0005.m4a"
-import Audio4 from "@/assets/songs/AUD-20240227-WA0006.m4a"
+
+import Video1 from "@/assets/vidéos/VID-20240301-WA0006.mp4"
+import Video2 from "@/assets/vidéos/VID-20240301-WA0016.mp4"
+import Video3 from "@/assets/vidéos/VID-20240301-WA0020.mp4"
+import Video4 from "@/assets/vidéos/VID-20240301-WA0021.mp4"
 import Image1 from "@/assets/images/24197339lpw-24206702-article-jpg_9357418_1250x625.jpg"
 import Image2 from "@/assets/images/musée-bénin.jpeg"
 import Image3 from "@/assets/images/Musee-recade-Benin.jpeg"
@@ -58,8 +59,10 @@ const zoomOut = () => {
 };
 
 const backgroundImage = ref<HTMLDivElement | null>(null);
+const videoPlayer = ref<HTMLVideoElement | null>(null);
+let currentVideo = Video1; // Set the initial video
 
-const changeBackgroundAndPlayAudio = (audioPath: string, imagePath: string) => {
+const changeContent = (imagePath: string, videoPath: string) => {
   if (backgroundImage.value) {
     backgroundImage.value.style.transition = 'background-image 0.5s ease-out';
     setTimeout(() => {
@@ -67,12 +70,14 @@ const changeBackgroundAndPlayAudio = (audioPath: string, imagePath: string) => {
     }, 100);
   }
 
-  if (audioPlayer && !audioPlayer.paused) {
-    audioPlayer.pause();
+  
+  if (videoPlayer.value) {
+    videoPlayer.value.src = videoPath;
+    videoPlayer.value.load();
+    videoPlayer.value.play();
+    currentVideo = videoPath;
   }
   
-  audioPlayer = new Audio(audioPath);
-  audioPlayer.play();
 };
 
 </script>
@@ -109,13 +114,9 @@ const changeBackgroundAndPlayAudio = (audioPath: string, imagePath: string) => {
   padding: 20px; /* Adjusted for smaller screens */
 }
 
-.content_middle_left img {
+.content_middle_left video {
   max-width: 100%;
-  transition: transform 0.5s ease;
-}
-
-.content_middle_left img:hover {
-  transform: scale(1.1);
+  max-height: 70vh; /* Added to prevent video overflow */
 }
 
 .content_middle_right {
@@ -138,4 +139,3 @@ const changeBackgroundAndPlayAudio = (audioPath: string, imagePath: string) => {
   gap: 10px;
 }
 </style>
-
