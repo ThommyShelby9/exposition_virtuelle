@@ -35,8 +35,6 @@
 </template>
 
 <script setup lang="ts">
-import Women from "@/assets/images/Leonardo_Diffusion_XL_A_stunning_African_woman_with_a_light_co_2-removebg-preview.png";
-
 import Video1 from "@/assets/vidéos/VID-20240301-WA0006.mp4"
 import Video2 from "@/assets/vidéos/VID-20240301-WA0016.mp4"
 import Video3 from "@/assets/vidéos/VID-20240301-WA0020.mp4"
@@ -48,7 +46,6 @@ import Image4 from "@/assets/images/phpR3aSJt.jpg"
 import { ref } from "vue";
 
 const isHovered = ref(false);
-let audioPlayer: HTMLAudioElement | null = null;
 
 const zoomIn = () => {
   isHovered.value = true;
@@ -64,7 +61,7 @@ let currentVideo = Video1; // Set the initial video
 
 const changeContent = (imagePath: string, videoPath: string) => {
   if (backgroundImage.value) {
-    backgroundImage.value.style.transition = 'background-image 0.5s ease-out';
+    backgroundImage.value.style.transition = 'background-image 1.5s ease-out';
     setTimeout(() => {
       backgroundImage.value!.style.backgroundImage = `url(${imagePath})`;
     }, 100);
