@@ -39,10 +39,10 @@ import Video1 from "@/assets/vidéos/VID-20240301-WA0006.mp4"
 import Video2 from "@/assets/vidéos/VID-20240301-WA0016.mp4"
 import Video3 from "@/assets/vidéos/VID-20240301-WA0020.mp4"
 import Video4 from "@/assets/vidéos/VID-20240301-WA0021.mp4"
-import Image1 from "@/assets/images/24197339lpw-24206702-article-jpg_9357418_1250x625.jpg"
-import Image2 from "@/assets/images/musée-bénin.jpeg"
-import Image3 from "@/assets/images/Musee-recade-Benin.jpeg"
-import Image4 from "@/assets/images/phpR3aSJt.jpg"
+import Image1 from "@/assets/images/photo_1_2024-03-05_09-57-57.jpg"
+import Image2 from "@/assets/images/photo_2_2024-03-05_09-57-57.jpg"
+import Image3 from "@/assets/images/photo_3_2024-03-05_09-57-57.jpg"
+import Image4 from "@/assets/images/photo_5_2024-03-05_09-57-57.jpg"
 import { ref } from "vue";
 
 const isHovered = ref(false);

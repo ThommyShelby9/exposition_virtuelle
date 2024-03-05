@@ -75,7 +75,7 @@
 
 <script setup lang="ts">
 import Logo from "@/assets/images/logoAbdu-removebg-preview.png";
-import Women from "@/assets/images/Leonardo_Diffusion_XL_A_stunning_African_woman_with_a_light_co_2-removebg-preview.png";
+import Women from "@/assets/images/photo_4_2024-03-05_09-57-57-removebg-preview.png";
 import { ref } from "vue";
 
 const hoverItem = (event: MouseEvent) => {
