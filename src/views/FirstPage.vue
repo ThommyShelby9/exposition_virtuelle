@@ -124,7 +124,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 40px;
   border-radius: 40px;
   box-shadow: 1px 1px rgb(0, 174, 255);
   padding: 90px;
@@ -189,12 +189,18 @@ button:hover::before {
 
 
 .women img {
-  max-width: 250px;
+  max-width: 100%;
+}
+
+.content_text{
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 20px;
 }
 
 .content_text p {
   margin-bottom: 10px;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .content_text p span {
